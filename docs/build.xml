@@ -1,0 +1,33 @@
+<project name="doc" default="allDocs">
+
+	<path id="wikitext.classpath">
+		<fileset dir="./lib">
+			<include name="org.eclipse.mylyn.wikitext.*core*.jar"/>
+		</fileset>
+	</path>
+
+	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
+	
+	<target name="generate-help"  description="Generate Eclipse help from textile source">
+		<wikitext-to-eclipse-help markupLanguage="Textile" 
+			multipleOutputFiles="true"
+			navigationImages="true"
+			helpPrefix="help">
+			<fileset dir="${basedir}/src">
+    				<include name="*.textile"/>
+			</fileset>
+			<stylesheet url="global_style.css"/>
+		</wikitext-to-eclipse-help>
+	</target>
+	<target name="generateFO" if="fopHome">
+		<wikitext-to-xslfo markupLanguage="Textile" validate="true">
+			<fileset dir="./src" includes="*.textile"/>
+		</wikitext-to-xslfo>
+		<exec command="${fopHome}/fop">
+			        <arg value="-r"/>
+					<arg value="./src/jlibsedmlhowto.fo"/>
+					<arg value="./src/JLibSEDML_HowTo.pdf"/>
+				</exec>
+	</target>
+	<target name="allDocs" depends="generate-help, generateFO"/>
+</project>

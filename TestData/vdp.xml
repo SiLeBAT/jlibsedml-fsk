@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <annotation/>
+  <model id="vdp" name="untitled">
+    <listOfCompartments>
+      <compartment id="first" name="first" spatialDimensions="2" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="x1" name="x1" compartment="first" initialAmount="1"/>
+      <species id="x2" name="x2" compartment="first" initialAmount="1"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="a" name="a" value="1"/>
+      <parameter id="eps" name="eps" value="0.01"/>
+      <parameter id="b" name="b" value="10"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="x1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> b </ci>
+            <ci> x2 </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="x2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <apply>
+                <plus/>
+                <ci> a </ci>
+                <apply>
+                  <times/>
+                  <apply>
+                    <minus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <times/>
+                      <ci> x1 </ci>
+                      <ci> x1 </ci>
+                    </apply>
+                  </apply>
+                  <ci> x2 </ci>
+                </apply>
+              </apply>
+              <ci> x1 </ci>
+            </apply>
+            <ci> eps </ci>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+  </model>
+</sbml>

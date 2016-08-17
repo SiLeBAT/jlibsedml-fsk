@@ -1,0 +1,201 @@
+<!-- 
+  This contains scripts for building jlibsedml format library and running analysis tools over the plugin.
+-->
+<project name="jlibsedml " default="coreBuild">
+
+	<property name="build" value="tmpBin" />
+	<property name="classes" value="${build}/classes" />
+
+	<property name="libBuild" value="${build}/lib" />
+
+	<tstamp>
+		<format property="TODAY_UK" pattern="dd-MMMM-yyyy" locale="en,UK" />
+	</tstamp>
+	<!-- jar name and version -->
+	<property name="jar.name" value="jlibsedml" />
+	<property name="jar.version" value="2.2.1" />
+
+	<property name="export.dir" value="export" />
+	<property name="export.lib" value="${export.dir}/lib" />
+	<property name="export.docs" value="${export.dir}/docs" />
+	<property name="export.src" value="${export.dir}/src" />
+
+	<property name="docs.dir" value="docs" />
+
+	<property name="zip.archive" value="${jar.name}-${jar.version}.zip" />
+
+	<path id="coreClassPath">
+		<fileset dir="./lib">
+			<patternset id="jlibsedmllib">
+				<include name="*.jar" />
+			</patternset>
+		</fileset>
+	</path>
+
+	<path id="coreTest.classpath">
+		<path refid="coreClassPath" />
+		<pathelement location="${test.classes}" />
+		<pathelement location="${classes}" />
+	</path>
+
+	<target name="coreBuild" description="builds jlibsedml core as jar" depends="clean, compileSrc">
+		<!-- copy libraries -->
+		<copy toDir="${libBuild}">
+			<fileset dir="./lib">
+				<patternset refid="jlibsedmllib" />
+			</fileset>
+		</copy>
+
+		<delete dir="${export.dir}" />
+		<mkdir dir="${export.dir}" />
+		<mkdir dir="${export.lib}" />
+		<mkdir dir="${export.docs}" />
+
+		<!-- jar up -->
+		<property name="jarfile" value="${export.dir}/${jar.name}.jar" />
+		<tstamp />
+		<jar destfile="${jarfile}" basedir="${classes}">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<!-- Information about the program itself -->
+				<attribute name="Implementation-Vendor" value="Jlibsedml" />
+				<attribute name="Implementation-Title" value="jlibsedml - A Java library for SEDML" />
+				<attribute name="Implementation-Version" value="${jar.version}" />
+				<attribute name="Built-Date" value="${TODAY}" />
+
+			</manifest>
+		</jar>
+
+		<javadoc sourcepath="src" excludepackagenames="org.jlibsedml.applications.*" 
+				destdir="${export.docs}" access="public" 
+				windowtitle="jlibsedml  Level 1 Version Javadoc">
+			<doctitle>
+				<![CDATA[<h1>jlibsedml SED-ML library</h1>]]></doctitle>
+		<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+	</javadoc>
+
+
+
+	<!-- copy library to export dir -->
+	<copy todir="${export.lib}">
+		<fileset dir="./lib">
+			<patternset refid="jlibsedmllib" />
+			<exclude name="*junit*.jar" />
+		</fileset>
+	</copy>
+	<!-- copy library to export dir -->
+	<copy todir="${export.src}">
+		<fileset dir="./src" excludes="org/sedml/applications/**/**"/>
+	</copy>
+
+	<!-- copy library to export dir -->
+	<copy todir="${export.dir}" file="README.txt">
+	</copy>
+
+	<!-- now generate readme pdf -->
+	<ant antfile="${docs.dir}/build.xml" />
+	<copy todir="${export.dir}">
+		<fileset dir="${docs.dir}" includes="*.pdf" />
+	</copy>
+		
+		<!-- now generate readme pdf -->
+		
+			<copy file="License.txt" todir="${export.dir}"/>
+				
+
+	<!-- now zip up -->
+	<zip destfile="${zip.archive}" basedir="${export.dir}">
+	</zip>
+
+
+</target>
+
+<!-- add new packages to the build here -->
+
+<patternset id="jlibsedmlpackages">
+	<include name="org/jlibsedml/*.java" />
+	<include name="org/jlibsedml/mathsymbols/*.java" />
+	<include name="org/jlibsedml/validation/*.java" />
+	<include name="org/jlibsedml/modelsupport/*.java" />
+	<include name="org/jlibsedml/execution/*.java" />
+	<include name="org/jlibsedml/testcases/*.java" />
+	<include name="org/jlibsedml/webtools/*.java" />
+	<include name="org/jlibsedml/extensions/*.java" />
+</patternset>
+
+<property name="test.root" value="${build}/tests">
+</property>
+<property name="test.classes" value="${test.root}/classes">
+</property>
+<property name="test.logs" value="${test.root}/logs">
+</property>
+<property name="test.reports" value="${test.root}/reports" />
+
+<target name="compileSrc" description="Compile source only">
+	<mkdir dir="${classes}" />
+	<copy toDir="${classes}">
+		<fileset dir="resources" includes="**/*.xsd" />
+		<fileset dir="resources" includes="**/*.obo" />
+		<fileset dir="resources" includes="**/*.xml" />
+		<fileset dir="resources" includes="**/*.xsl" />
+	</copy>
+	<javac srcdir="src/" includeantruntime="false" destdir="${classes}" nowarn="true" debug="true" debuglevel="lines,vars,source">
+		<patternset refid="jlibsedmlpackages" />
+		<classpath>
+			<path refid="coreClassPath" />
+		</classpath>
+	</javac>
+</target>
+
+<target name="compileTest" description="Compile test classes  only">
+	<mkdir dir="${classes}" />
+	<mkdir dir="${test.root}" />
+	<mkdir dir="${test.classes}" />
+	<mkdir dir="${test.logs}" />
+	<javac srcdir="test/" destdir="${test.classes}" nowarn="true" debug="true" debuglevel="lines, vars, and source">
+		<patternset refid="jlibsedmlpackages" />
+		<classpath refid="coreTest.classpath">
+		</classpath>
+	</javac>
+</target>
+
+<!-- Runs unit tests for core packages -->
+<target name="test" description="Runs Junits" depends="clean,compileSrc, compileTest">
+	<junit printsummary="yes" haltonfailure="no" fork="true" forkmode="once">
+		<jvmarg value="-d32" />
+		<classpath>
+			<path refid="coreTest.classpath" />
+			<pathelement location="${test.classes}" />
+		</classpath>
+
+		<batchtest todir="${test.logs}">
+			<formatter type="xml" />
+			<fileset dir="${test.classes}">
+				<include name="**/*Test.class" />
+			</fileset>
+		</batchtest>
+	</junit>
+
+	<mkdir dir="${test.reports}" />
+
+	<!-- generate report -->
+	<junitreport todir="${test.reports}">
+		<fileset dir="${test.logs}" includes="**/*.xml" />
+		<report todir="${test.reports}" />
+	</junitreport>
+</target>
+
+<target name="clean">
+	<delete dir="${build}">
+	</delete>
+	<delete dir="${test.root}">
+	</delete>
+	<delete dir="${export.dir}">
+	</delete>
+</target>
+
+<target name="testAndCleanUp" depends="test" description="clean compile and test, then deletes artifacts">
+	<antcall target="clean" />
+</target>
+
+</project>

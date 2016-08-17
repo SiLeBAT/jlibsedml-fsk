@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML" version="1" level="1">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" name="ZeroTo50" initialTime="0.0" outputStartTime="0.0" outputEndTime="50.0" numberOfPoints="100">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="480" y="36" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+      <algorithm kisaoID="KISAO:0000032" />
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="element1" name="Locke16_8" language="urn:sedml:language:sbml" source="element5">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="28" y="19" />
+          <size width="104" height="62" />
+        </sbsi-editor>
+      </annotation>
+      <listOfChanges>
+        <changeXML target="/www.sbml.org_sbml_level2_version3:sbml/www.sbml.org_sbml_level2_version3:model[@id='Locke2006_CircClock_LL']/www.sbml.org_sbml_level2_version3:listOfEvents[1]/www.sbml.org_sbml_level2_version3:event[1]/www.sbml.org_sbml_level2_version3:trigger[1]/www.w3.org_1998_Math_MathML:math/www.w3.org_1998_Math_MathML:apply/www.w3.org_1998_Math_MathML:cn[1]">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="8" y="128" />
+              <size width="96" height="73" />
+            </sbsi-editor>
+          </annotation>
+          <newXML>
+            <cn>16</cn>
+          </newXML>
+        </changeXML>
+        <changeXML target="/www.sbml.org_sbml_level2_version3:sbml/www.sbml.org_sbml_level2_version3:model[@id='Locke2006_CircClock_LL']/www.sbml.org_sbml_level2_version3:listOfEvents[1]/www.sbml.org_sbml_level2_version3:event[3]/www.sbml.org_sbml_level2_version3:trigger[1]/www.w3.org_1998_Math_MathML:math/www.w3.org_1998_Math_MathML:apply/www.w3.org_1998_Math_MathML:cn[1]">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="116" y="132" />
+              <size width="90" height="70" />
+            </sbsi-editor>
+          </annotation>
+          <newXML>
+            <cn>40</cn>
+          </newXML>
+        </changeXML>
+      </listOfChanges>
+    </model>
+    <model id="element5" name="Locke 2006" language="urn:sedml:language:sbml" source="./TestData/Locke2006_CircClock_LL.xml">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="594" y="116" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+    </model>
+  </listOfModels>
+  <listOfTasks>
+    <task id="element2" modelReference="element1" simulationReference="sim1">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="210" y="32" />
+          <size width="107" height="51" />
+        </sbsi-editor>
+      </annotation>
+    </task>
+    <task id="t8_16" modelReference="element5" simulationReference="sim1">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="459" y="139" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+    </task>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="timeDG" name="Time">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="304" y="247" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+      <listOfVariables>
+        <variable id="time" name="Time" taskReference="element2" symbol="urn:sedml:symbol:time">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="341" y="166" />
+              <size width="80" height="45" />
+            </sbsi-editor>
+          </annotation>
+        </variable>
+      </listOfVariables>
+      <math:math>
+        <math:ci>time</math:ci>
+      </math:math>
+    </dataGenerator>
+    <dataGenerator id="LD8_16_dg">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="470" y="301" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+      <listOfVariables>
+        <variable id="lhy" name="LHY" taskReference="t8_16" target="/www.sbml.org_sbml_level2_version3:sbml/www.sbml.org_sbml_level2_version3:model[@id='Locke2006_CircClock_LL']/www.sbml.org_sbml_level2_version3:listOfSpecies[1]/www.sbml.org_sbml_level2_version3:species[@id='cTm']">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="458" y="217" />
+              <size width="80" height="45" />
+            </sbsi-editor>
+          </annotation>
+        </variable>
+      </listOfVariables>
+      <math:math>
+        <math:ci>lhy</math:ci>
+      </math:math>
+    </dataGenerator>
+    <dataGenerator id="LHY_16_8_dg">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="79" y="277" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+      <listOfVariables>
+        <variable id="LHY_16_8" name="LHY" taskReference="element2" target="/www.sbml.org_sbml_level2_version3:sbml/www.sbml.org_sbml_level2_version3:model[@id='Locke2006_CircClock_LL']/www.sbml.org_sbml_level2_version3:listOfSpecies[1]/www.sbml.org_sbml_level2_version3:species[@id='cTm']">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="221" y="166" />
+              <size width="80" height="45" />
+            </sbsi-editor>
+          </annotation>
+        </variable>
+      </listOfVariables>
+      <math:math>
+        <math:ci>LHY_16_8</math:ci>
+      </math:math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="element11">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <location x="221" y="397" />
+          <size width="80" height="45" />
+        </sbsi-editor>
+      </annotation>
+      <listOfCurves>
+        <curve id="C1" name="curve1" logX="false" logY="false" xDataReference="timeDG" yDataReference="LHY_16_8_dg">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="166" y="345" />
+              <size width="60" height="30" />
+            </sbsi-editor>
+          </annotation>
+        </curve>
+        <curve id="c2" name="c2" logX="false" logY="false" xDataReference="timeDG" yDataReference="LD8_16_dg">
+          <annotation>
+            <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+              <location x="371" y="368" />
+              <size width="60" height="30" />
+            </sbsi-editor>
+          </annotation>
+        </curve>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
+

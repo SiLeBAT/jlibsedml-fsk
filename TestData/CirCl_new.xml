@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" xmlns:celldesigner="http://www.sbml.org/2001/ns/celldesigner" level="2" version="4">
+  <model metaid="CirCl__1j1__2_3e_4_i_1273835551177" id="CirCl__1j1__2_3e_4_i_1294832250786" >
+    <annotation>
+      <celldesigner:extension>
+        <celldesigner:modelVersion>4.0</celldesigner:modelVersion>
+        <celldesigner:modelDisplay sizeX="340" sizeY="270"/>
+        <celldesigner:listOfCompartmentAliases>
+          <celldesigner:compartmentAlias id="ca0" compartment="first">
+            <celldesigner:class>SQUARE</celldesigner:class>
+            <celldesigner:bounds x="25.0" y="25.0" w="155.0" h="175.0"/>
+            <celldesigner:namePoint x="136.5" y="163.5"/>
+            <celldesigner:doubleLine thickness="12.0" outerWidth="2.0" innerWidth="1.0"/>
+            <celldesigner:paint color="ffcccc00" scheme="Color"/>
+            <celldesigner:info state="empty" angle="-1.5707963267948966"/>
+          </celldesigner:compartmentAlias>
+        </celldesigner:listOfCompartmentAliases>
+        <celldesigner:listOfComplexSpeciesAliases/>
+        <celldesigner:listOfSpeciesAliases>
+          <celldesigner:speciesAlias id="sa0" species="mRNA" compartmentAlias="ca0">
+            <celldesigner:activity>inactive</celldesigner:activity>
+            <celldesigner:bounds x="141.0" y="154.0" w="80.0" h="24.0"/>
+            <celldesigner:view state="usual"/>
+            <celldesigner:usualView>
+              <celldesigner:innerPosition x="116.0" y="129.0"/>
+              <celldesigner:boxSize width="80.0" height="24.0"/>
+              <celldesigner:singleLine width="1.0"/>
+              <celldesigner:paint color="ffccffcc" scheme="Color"/>
+            </celldesigner:usualView>
+            <celldesigner:briefView>
+              <celldesigner:innerPosition x="0.0" y="0.0"/>
+              <celldesigner:boxSize width="80.0" height="60.0"/>
+              <celldesigner:singleLine width="0.0"/>
+              <celldesigner:paint color="3fff0000" scheme="Color"/>
+            </celldesigner:briefView>
+            <celldesigner:info state="empty" angle="-1.5707963267948966"/>
+          </celldesigner:speciesAlias>
+          <celldesigner:speciesAlias id="sa1" species="Fc">
+            <celldesigner:activity>inactive</celldesigner:activity>
+            <celldesigner:bounds x="220.0" y="68.0" w="80.0" h="24.0"/>
+            <celldesigner:view state="usual"/>
+            <celldesigner:usualView>
+              <celldesigner:boxSize width="80.0" height="24.0"/>
+              <celldesigner:singleLine width="1.0"/>
+              <celldesigner:paint color="ffccffcc" scheme="Color"/>
+            </celldesigner:usualView>
+            <celldesigner:briefView>
+              <celldesigner:innerPosition x="0.0" y="0.0"/>
+              <celldesigner:boxSize width="80.0" height="60.0"/>
+              <celldesigner:singleLine width="0.0"/>
+              <celldesigner:paint color="3fff0000" scheme="Color"/>
+            </celldesigner:briefView>
+            <celldesigner:info state="empty" angle="-1.5707963267948966"/>
+          </celldesigner:speciesAlias>
+          <celldesigner:speciesAlias id="sa2" species="Fn" compartmentAlias="ca0">
+            <celldesigner:activity>inactive</celldesigner:activity>
+            <celldesigner:bounds x="70.0" y="68.0" w="80.0" h="24.0"/>
+            <celldesigner:view state="usual"/>
+            <celldesigner:usualView>
+              <celldesigner:innerPosition x="45.0" y="43.0"/>
+              <celldesigner:boxSize width="80.0" height="24.0"/>
+              <celldesigner:singleLine width="1.0"/>
+              <celldesigner:paint color="ffccffcc" scheme="Color"/>
+            </celldesigner:usualView>
+            <celldesigner:briefView>
+              <celldesigner:innerPosition x="0.0" y="0.0"/>
+              <celldesigner:boxSize width="80.0" height="60.0"/>
+              <celldesigner:singleLine width="0.0"/>
+              <celldesigner:paint color="3fff0000" scheme="Color"/>
+            </celldesigner:briefView>
+            <celldesigner:info state="empty" angle="-1.5707963267948966"/>
+          </celldesigner:speciesAlias>
+        </celldesigner:listOfSpeciesAliases>
+        <celldesigner:listOfGroups/>
+        <celldesigner:listOfProteins>
+          <celldesigner:protein id="pr1"  type="GENERIC"/>
+          <celldesigner:protein id="pr2"  type="GENERIC"/>
+          <celldesigner:protein id="pr3"  type="GENERIC"/>
+        </celldesigner:listOfProteins>
+        <celldesigner:listOfGenes/>
+        <celldesigner:listOfRNAs/>
+        <celldesigner:listOfAntisenseRNAs/>
+        <celldesigner:listOfLayers/>
+        <celldesigner:listOfBlockDiagrams/>
+      </celldesigner:extension>
+      <listOfConfigs xmlns="http://www.uk.ac.ed.csbe.sbsivisual/configpage/ns">
+        <popSize>16</popSize>
+        <MAXRG>5000</MAXRG>
+        <targeted_costfunctionvalue>0.01</targeted_costfunctionvalue>
+        <ckPointFreq>-1</ckPointFreq>
+        <MAXCOST>1000</MAXCOST>
+        <MaxNoChange>100</MaxNoChange>
+        <seed>-1</seed>
+        <mutantProbability>0.3</mutantProbability>
+        <atol>1.0E-14</atol>
+        <restartFreq>51</restartFreq>
+        <mu>0.7</mu>
+        <reltol>1.0E-4</reltol>
+        <numBest>1</numBest>
+        <printfreq>2</printfreq>
+        <setupType>SobolSelect</setupType>
+        <out_interval>0.01</out_interval>
+        <interval>0.0010</interval>
+        <MaxSimilarity>95</MaxSimilarity>
+        <MAX_NUMGEN>500</MAX_NUMGEN>
+        <sobolseed>-1</sobolseed>
+        <t_init>0.0</t_init>
+        <t_final>70.0</t_final>
+        <verbose>-1</verbose>
+        <maxTimes>100000</maxTimes>
+        <numGen>50</numGen>
+      </listOfConfigs>
+      <listOfParameterHistories xmlns="http://www.uk.ac.ed.csbe.sbsivisual/parameter/ns">
+        <parameterHistory min="0.0" initialstep="0.16" max="20.0" use="Yes" id="Vs"/>
+        <parameterHistory min="0.0" initialstep="0.1" max="20.0" use="Yes" id="K"/>
+        <parameterHistory min="0.0" initialstep="0.4" max="40.0" use="No" id="n"/>
+        <parameterHistory min="0.0" initialstep="0.0505" max="20.0" use="Yes" id="Vm"/>
+        <parameterHistory min="0.0" initialstep="0.05" max="10.0" use="Yes" id="Km"/>
+        <parameterHistory min="0.0" initialstep="0.05" max="10.0" use="No" id="ks"/>
+        <parameterHistory min="0.0" initialstep="0.14" max="10.0" use="Yes" id="Vd"/>
+        <parameterHistory min="0.0" initialstep="0.013" max="10.0" use="Yes" id="Kd"/>
+        <parameterHistory min="0.0" initialstep="0.05" max="20.0" use="Yes" id="k1"/>
+        <parameterHistory min="0.0" initialstep="0.06" max="20.0" use="Yes" id="k2"/>
+      </listOfParameterHistories>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="substance" >
+        <listOfUnits>
+          <unit kind="mole"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="volume" >
+        <listOfUnits>
+          <unit kind="litre"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="area" >
+        <listOfUnits>
+          <unit kind="metre" exponent="2"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="length" >
+        <listOfUnits>
+          <unit kind="metre"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time" >
+        <listOfUnits>
+          <unit kind="second"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="default" size="1" units="volume"/>
+      <compartment id="first"  spatialDimensions="2" size="1" units="area" outside="default">
+        <annotation>
+          <celldesigner:extension>
+            <celldesigner:name>first</celldesigner:name>
+          </celldesigner:extension>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="mRNA" name="message RNA" compartment="first" initialAmount="1">
+        <annotation>
+          <celldesigner:extension>
+            <celldesigner:positionToCompartment>transmembrane
+						</celldesigner:positionToCompartment>
+            <celldesigner:speciesIdentity>
+              <celldesigner:class>PROTEIN</celldesigner:class>
+              <celldesigner:proteinReference>pr1
+							</celldesigner:proteinReference>
+            </celldesigner:speciesIdentity>
+          </celldesigner:extension>
+        </annotation>
+      </species>
+      <species id="Fc"  compartment="default" initialAmount="0">
+        <annotation>
+          <celldesigner:extension>
+            <celldesigner:positionToCompartment>inside
+						</celldesigner:positionToCompartment>
+            <celldesigner:speciesIdentity>
+              <celldesigner:class>PROTEIN</celldesigner:class>
+              <celldesigner:proteinReference>pr2
+							</celldesigner:proteinReference>
+            </celldesigner:speciesIdentity>
+          </celldesigner:extension>
+        </annotation>
+      </species>
+      <species id="Fn"  compartment="first" initialAmount="0">
+        <annotation>
+          <celldesigner:extension>
+            <celldesigner:positionToCompartment>inside
+						</celldesigner:positionToCompartment>
+            <celldesigner:speciesIdentity>
+              <celldesigner:class>PROTEIN</celldesigner:class>
+              <celldesigner:proteinReference>pr3
+							</celldesigner:proteinReference>
+            </celldesigner:speciesIdentity>
+          </celldesigner:extension>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="Vs"  value="1.6" units="substance"/>
+      <parameter id="K"  value="1" units="substance"/>
+      <parameter id="n"  value="4" units="substance"/>
+      <parameter id="Vm"  value="0.505" units="substance"/>
+      <parameter id="Km"  value="0.5" units="substance"/>
+      <parameter id="ks"  value="0.5" units="substance"/>
+      <parameter id="Vd"  value="1.4" units="substance"/>
+      <parameter id="Kd"  value="0.13" units="substance"/>
+      <parameter id="k1"  value="0.5" units="substance"/>
+      <parameter id="k2"  value="0.6" units="substance"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="mRNA">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vs </ci>
+                <apply>
+                  <power/>
+                  <ci> K </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> K </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Fn </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vm </ci>
+                <ci> mRNA </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km </ci>
+                <ci> mRNA </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Fc">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> ks </ci>
+                  <ci> mRNA </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Vd </ci>
+                    <ci> Fc </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> Kd </ci>
+                    <ci> Fc </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k1 </ci>
+                <ci> Fc </ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> Fn </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Fn">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> Fc </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> Fn </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfConstraints>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> K </ci>
+              <cn> 20 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> K </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> Kd </ci>
+              <cn> 10 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> Kd </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> Km </ci>
+              <cn> 10 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> Km </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> Vd </ci>
+              <cn> 10 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> Vd </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> Vm </ci>
+              <cn> 20 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> Vm </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> Vs </ci>
+              <cn> 20 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> Vs </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> k1 </ci>
+              <cn> 20 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> k1 </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> k2 </ci>
+              <cn> 20 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> k2 </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> ks </ci>
+              <cn> 10 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> ks </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+    </listOfConstraints>
+  </model>
+</sbml>

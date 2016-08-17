@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sedML version="1" level="1" xmlns="http://sed-ml.org/"
+	xmlns:math="http://www.w3.org/1998/Math/MathML"
+	xmlns:html="http://www.w3.org/1998/Math/MathML">
+	<notes>
+		<html xmlns="http://www.w3.org/1999/xhtml">
+			<body>
+				<p>Changing a system from oscillation to chaos</p>
+			</body>
+		</html>
+	</notes>
+	<listOfSimulations>
+		<uniformTimeCourse id="simulation1" initialTime="0"
+			outputStartTime="50" outputEndTime="1000" numberOfPoints="1000">
+			<notes>
+				<p xmlns="http://www.w3.org/1999/xhtml">Changing a system from oscillation to chaos in a p tags</p>
+			</notes>
+			<algorithm kisaoID="KISAO:0000027"></algorithm>
+		</uniformTimeCourse>
+	</listOfSimulations>
+	<listOfModels>
+		<model id="model1" name="Circadian Oscillations" language="SBML"
+			source="TestData/BIOMD0000000021.xml" />
+		<model id="model2" name="Circadian Chaos" language="SBML"
+			source="model1">
+
+			<listOfChanges>
+				<changeAttribute
+					target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value"
+					newValue="0.28">
+
+				</changeAttribute>
+				<changeAttribute
+					target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_dT']/@value"
+					newValue="4.8" />
+			</listOfChanges>
+		</model>
+		<model id="model3" name="Test Remove element" language="SBML"
+			source="model1">
+			<listOfChanges>
+				<removeXML
+					target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']">
+				</removeXML>
+			</listOfChanges>
+		</model>
+		<model id="model4" name="Test Add element" language="SBML"
+			source="model1">
+			<listOfChanges>
+				<addXML target="/sbml:sbml/sbml:model/sbml:listOfParameters">
+					<newXML>
+						<parameter metaid="metaid_0000010" id="newParam1" value="0.7" />
+						<parameter metaid="metaid_0000011" id="newParam2" value="0.7" />
+					</newXML>
+				</addXML>
+			</listOfChanges>
+		</model>
+		<model id="model5" name="Test Add element" language="SBML"
+			source="model1">
+			<notes>
+				<html xmlns="http://www.w3.org/1999/xhtml">
+					<body>
+						<p>Changing a system from oscillation to chaos</p>
+					</body>
+				</html>
+			</notes>
+			<listOfChanges>
+				<changeXML
+					target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']">
+					<notes>
+						<html xmlns="http://www.w3.org/1999/xhtml">
+							<body>
+								<p>Changing a system from oscillation to chaos change 2</p>
+							</body>
+						</html>
+					</notes>
+					<newXML>
+						<parameter metaid="metaid_0000010" id="newParam1" value="0.7" />
+						<parameter metaid="metaid_0000011" id="newParam2" value="0.7" />
+					</newXML>
+				</changeXML>
+			</listOfChanges>
+
+		</model>
+	</listOfModels>
+	<listOfTasks>
+		<task id="task1" name="Baseline" modelReference="model1"
+			simulationReference="simulation1">
+			<notes>
+				<html xmlns="http://www.w3.org/1999/xhtml">
+					<body>
+						<p>Changing a system from oscillation to chaos task 1</p>
+					</body>
+				</html>
+			</notes>
+		</task>
+		<task id="task2" name="Modified parameters" modelReference="model2"
+			simulationReference="simulation1" />
+
+	</listOfTasks>
+	<listOfDataGenerators>
+		<dataGenerator id="time" name="Time">
+
+			<listOfVariables>
+
+				<variable id="timeVar" name="time" taskReference="task1"
+					symbol="urn:sedml:symbol:time">
+					<notes>
+						<html xmlns="http://www.w3.org/1999/xhtml">
+							<body>
+								<p>Changing a system from oscillation to chaos variable</p>
+							</body>
+						</html>
+					</notes>
+				</variable>
+			</listOfVariables>
+			<math:math>
+				<math:apply>
+					<math:plus />
+					<math:ci>timeVar</math:ci>
+				</math:apply>
+			</math:math>
+
+		</dataGenerator>
+		<dataGenerator id="tim1" name="tim mRNA (total)">
+			<listOfVariables>
+				<variable id="v1" taskReference="task1"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Mt']" />
+			</listOfVariables>
+			<math:math>
+				<math:apply>
+					<math:plus />
+					<math:ci>v1</math:ci>
+				</math:apply>
+			</math:math>
+		</dataGenerator>
+		<dataGenerator id="tim2" name="tim mRNA (changed parameters)">
+			<listOfVariables>
+				<variable id="v2" taskReference="task2"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Mt']" />
+			</listOfVariables>
+
+			<math:math>
+				<math:apply>
+					<math:plus />
+					<math:ci>v2</math:ci>
+				</math:apply>
+			</math:math>
+
+		</dataGenerator>
+	</listOfDataGenerators>
+	<listOfOutputs>
+
+		<plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
+
+
+
+			<listOfCurves>
+				<curve id="tim1Curve" logX="false" logY="false"
+					xDataReference="time" yDataReference="tim1" />
+				<curve id="tim2Curve" logX="false" logY="false"
+					xDataReference="time" yDataReference="tim2" />
+			</listOfCurves>
+
+		</plot2D>
+	</listOfOutputs>
+</sedML>

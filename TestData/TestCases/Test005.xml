@@ -1,0 +1,18 @@
+<!-- Models & Sims only  defined and empty listOfChanges  - VALID-->
+<sedML version="1" level="1" xmlns="http://sed-ml.org/"
+	xmlns:math="http://www.w3.org/1998/Math/MathML">
+<listOfModels>
+	  <model id="model1" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000140"/>
+	  <listOfChanges/>
+</listOfModels>
+<listOfSimulations>
+	 <uniformTimeCourse id="simulation1" 
+    initialTime="0" outputStartTime="0" outputEndTime="2500"
+    numberOfPoints="1000" >
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+</listOfSimulations>
+<listOfTasks/>
+<listOfDataGenerators/>
+<listOfOutputs/>
+</sedML>

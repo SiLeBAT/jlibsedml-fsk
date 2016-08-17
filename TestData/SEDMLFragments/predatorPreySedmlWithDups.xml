@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML"
+	version="1" level="1">
+	<listOfSimulations>
+		<uniformTimeCourse id="id" name="name" initialTime="0.0"
+			outputStartTime="0.0" outputEndTime="10.0" numberOfPoints="100">
+			<algorithm kisaoID="KISAO:0000032" />
+		</uniformTimeCourse>
+	</listOfSimulations>
+	<listOfModels>
+		<model id="modelid" name="Predator Prey" language="urn:sedml:language:sbml"
+			source="TestData/Predator_Prey.xml" />
+		<model id="lessPrey" name="Predator Prey - 50 prey initial"
+			language="urn:sedml:language:sbml" source="modelid">
+			<listOfChanges>
+				<changeAttribute
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x']/@initialConcentration"
+					newValue="50" />
+			</listOfChanges>
+		</model>
+	</listOfModels>
+	<listOfTasks>
+		<task id="task1Id" name="Run basic model" modelReference="modelid"
+			simulationReference="id" />
+		<task id="task2Id" name="Run less prey model" modelReference="lessPrey"
+			simulationReference="id" />
+		<task id="task2Id" name="Run less prey model" modelReference="lessPrey"
+			simulationReference="id" />
+	</listOfTasks>
+	<listOfDataGenerators>
+		<dataGenerator id="dg1" name="dg1name">
+			<listOfVariables>
+				<variable id="x" name="x" taskReference="task1Id"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x']" />
+			</listOfVariables>
+			<math:math>
+				<math:ci>x</math:ci>
+			</math:math>
+		</dataGenerator>
+		<dataGenerator id="dgy" name="dgyname">
+			<listOfVariables>
+				<variable id="y" name="y" taskReference="task1Id"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='y']" />
+			</listOfVariables>
+			<math:math>
+				<math:ci>y</math:ci>
+			</math:math>
+		</dataGenerator>
+		<dataGenerator id="dgtotal" name="dgtotal">
+			<listOfVariables>
+				<variable id="y2" name="y" taskReference="task1Id"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='y']" />
+				<variable id="x2" name="x" taskReference="task1Id"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x']" />
+			</listOfVariables>
+			<math:math>
+				<math:apply>
+					<math:plus />
+					<math:ci>y2</math:ci>
+					<math:ci>x2</math:ci>
+				</math:apply>
+			</math:math>
+		</dataGenerator>
+		<dataGenerator id="dgtime" name="dgtime">
+			<listOfVariables>
+				<variable id="time" name="time" taskReference="task1Id"
+					symbol="urn:sedml:symbol:time" />
+			</listOfVariables>
+			<math:math>
+				<math:ci>time</math:ci>
+			</math:math>
+		</dataGenerator>
+				<dataGenerator id="dgyLessPrey" name="dgyLessPrey">
+			<listOfVariables>
+				<variable id="y3" name="y" taskReference="task2Id"
+					target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='y']" />
+			</listOfVariables>
+			<math:math>
+				<math:ci>y3</math:ci>
+			</math:math>
+		</dataGenerator>
+	</listOfDataGenerators>
+	<listOfOutputs>
+	<plot2D id="basicPlot" name="basic Plot">
+			<listOfCurves>
+				<curve id="curve1ID" name="" logX="false" logY="false"
+					xDataReference="dgtime" yDataReference="dg1" />
+				<curve id="curve2ID" name="" logX="false" logY="false"
+					xDataReference="dgtime" yDataReference="dgy" />
+			</listOfCurves>
+		</plot2D>
+		<plot2D id="limitCycle" name="limitCycle">
+			<listOfCurves>
+				<curve id="curve3ID" name="" logX="false" logY="false"
+					xDataReference="dg1" yDataReference="dgy" />
+			</listOfCurves>
+		</plot2D>
+		<report id="basicReport" name="basicReport">
+			<listOfDataSets>
+				<dataSet id="ds1" name="" label="time" dataReference="dgtime" />
+			</listOfDataSets>
+		</report>
+		<report id="basicReportWithY" name="TimeAndY">
+			<listOfDataSets>
+				<dataSet id="ds1" name="" label="time" dataReference="dgtime" />
+				<dataSet id="dsy" name="" label="y" dataReference="dgy" />
+				<dataSet id="dstotal" name="" label="Total" dataReference="dgtotal" />
+			</listOfDataSets>
+		</report>
+		<report id="basicReportWithYFrom2Tasks" name="TimeAndY">
+			<listOfDataSets>
+				<dataSet id="ds1" name="" label="time" dataReference="dgtime" />
+				<dataSet id="dsy" name="" label="y" dataReference="dgy" />
+				<dataSet id="dsyLessPrey" name="" label="yLessPrey" dataReference="dgyLessPrey" />
+			</listOfDataSets>
+		</report>
+		
+	</listOfOutputs>
+</sedML>

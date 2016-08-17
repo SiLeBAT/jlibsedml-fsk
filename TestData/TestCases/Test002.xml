@@ -1,0 +1,9 @@
+<!-- Valid document with placeholder empty lists - VALID-->
+<sedML version="1" level="1" xmlns="http://sed-ml.org/"
+	xmlns:math="http://www.w3.org/1998/Math/MathML">
+<listOfModels/>
+<listOfSimulations/>
+<listOfTasks/>
+<listOfDataGenerators/>
+<listOfOutputs/>
+</sedML>

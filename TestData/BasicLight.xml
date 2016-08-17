@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" metaid="metaid_0000001"
+	level="2" version="4">
+	<model metaid="metaid_0000002" id="Locke2005_ks_tanh" name="Locke2005ks_tanh">
+		
+		<listOfFunctionDefinitions>
+			<functionDefinition id="lightFunction" name="tanh() light function">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<lambda>
+						<bvar>
+							<ci> t </ci>
+						</bvar>
+						<bvar>
+							<ci> lightOffset </ci>
+						</bvar>
+						<bvar>
+							<ci> lightAmplitude </ci>
+						</bvar>
+						<bvar>
+							<ci> phase </ci>
+						</bvar>
+						<bvar>
+							<ci> photoPeriod </ci>
+						</bvar>
+						<bvar>
+							<ci> cyclePeriod </ci>
+						</bvar>
+						<bvar>
+							<ci> twilightPeriod </ci>
+						</bvar>
+						<apply>
+							<plus />
+							<apply>
+								<minus />
+								<apply>
+									<plus />
+									<ci> lightOffset </ci>
+									<apply>
+										<times />
+										<cn> 0.5 </cn>
+										<ci> lightAmplitude </ci>
+										<apply>
+											<plus />
+											<cn> 1 </cn>
+											<apply>
+												<tanh />
+												<apply>
+													<divide />
+													<apply>
+														<times />
+														<ci> cyclePeriod </ci>
+														<apply>
+															<minus />
+															<apply>
+																<divide />
+																<apply>
+																	<plus />
+																	<ci> t </ci>
+																	<ci> phase </ci>
+																</apply>
+																<ci> cyclePeriod </ci>
+															</apply>
+															<apply>
+																<floor />
+																<apply>
+																	<divide />
+																	<apply>
+																		<floor />
+																		<apply>
+																			<plus />
+																			<ci> t </ci>
+																			<ci> phase </ci>
+																		</apply>
+																	</apply>
+																	<ci> cyclePeriod </ci>
+																</apply>
+															</apply>
+														</apply>
+													</apply>
+													<ci> twilightPeriod </ci>
+												</apply>
+											</apply>
+										</apply>
+									</apply>
+								</apply>
+								<apply>
+									<times />
+									<cn> 0.5 </cn>
+									<ci> lightAmplitude </ci>
+									<apply>
+										<plus />
+										<cn> 1 </cn>
+										<apply>
+											<tanh />
+											<apply>
+												<divide />
+												<apply>
+													<minus />
+													<apply>
+														<times />
+														<ci> cyclePeriod </ci>
+														<apply>
+															<minus />
+															<apply>
+																<divide />
+																<apply>
+																	<plus />
+																	<ci> t </ci>
+																	<ci> phase </ci>
+																</apply>
+																<ci> cyclePeriod </ci>
+															</apply>
+															<apply>
+																<floor />
+																<apply>
+																	<divide />
+																	<apply>
+																		<floor />
+																		<apply>
+																			<plus />
+																			<ci> t </ci>
+																			<ci> phase </ci>
+																		</apply>
+																	</apply>
+																	<ci> cyclePeriod </ci>
+																</apply>
+															</apply>
+														</apply>
+													</apply>
+													<ci> photoPeriod </ci>
+												</apply>
+												<ci> twilightPeriod </ci>
+											</apply>
+										</apply>
+									</apply>
+								</apply>
+							</apply>
+							<apply>
+								<times />
+								<cn> 0.5 </cn>
+								<ci> lightAmplitude </ci>
+								<apply>
+									<plus />
+									<cn> 1 </cn>
+									<apply>
+										<tanh />
+										<apply>
+											<divide />
+											<apply>
+												<minus />
+												<apply>
+													<times />
+													<ci> cyclePeriod </ci>
+													<apply>
+														<minus />
+														<apply>
+															<divide />
+															<apply>
+																<plus />
+																<ci> t </ci>
+																<ci> phase </ci>
+															</apply>
+															<ci> cyclePeriod </ci>
+														</apply>
+														<apply>
+															<floor />
+															<apply>
+																<divide />
+																<apply>
+																	<floor />
+																	<apply>
+																		<plus />
+																		<ci> t </ci>
+																		<ci> phase </ci>
+																	</apply>
+																</apply>
+																<ci> cyclePeriod </ci>
+															</apply>
+														</apply>
+													</apply>
+												</apply>
+												<ci> cyclePeriod </ci>
+											</apply>
+											<ci> twilightPeriod </ci>
+										</apply>
+									</apply>
+								</apply>
+							</apply>
+						</apply>
+					</lambda>
+				</math>
+			</functionDefinition>
+		</listOfFunctionDefinitions>
+		
+		<listOfCompartments>
+			<compartment metaid="metaid_0000005" id="compartment"
+				size="1">
+				
+			</compartment>
+		</listOfCompartments>
+		<listOfSpecies>
+			<species metaid="metaid_000000light" id="lightSp"
+				compartment="compartment" initialConcentration="0" />
+				
+		</listOfSpecies>
+		<listOfParameters>
+			<parameter metaid="metaid_0000121" id="lightAmplitude"
+				value="1" />
+			<parameter metaid="metaid_0000122" id="lightOffset" value="0" />
+			<parameter metaid="metaid_0000123" id="cyclePeriod" value="24" />
+			<parameter metaid="metaid_0000124" id="photoPeriod" value="12" constant="false"/>
+			<parameter metaid="metaid_0000125" id="phase" value="0" />
+			<parameter id="twilightPeriod" value="0.2" />
+			
+	
+			
+		</listOfParameters>
+		<listOfRules>
+
+			<assignmentRule variable="lightSp">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply>
+						<ci> lightFunction </ci>
+						<csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+						<ci> lightOffset </ci>
+						<ci> lightAmplitude </ci>
+						<ci> phase </ci>
+						<ci> photoPeriod </ci>
+						<ci> cyclePeriod </ci>
+						<ci> twilightPeriod </ci>
+					</apply>
+				</math>
+			</assignmentRule>
+			
+		</listOfRules>
+		<listOfEvents>
+	
+			<event>
+				<trigger>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<apply>
+							<gt/>
+								<csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+								<cn>24</cn>
+							
+						</apply>
+					</math>
+				</trigger>
+				<listOfEventAssignments>
+				<eventAssignment variable="cyclePeriod">
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+					
+						<cn>24</cn>
+					</math>
+				
+				</eventAssignment>
+				<eventAssignment variable="photoPeriod">
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+					
+						<cn>6</cn>
+					</math>
+				
+				</eventAssignment>
+				</listOfEventAssignments>
+			</event>
+			<event>
+				<trigger>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<apply>
+							<gt/>
+								<csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+								<cn>72</cn>
+							
+						</apply>
+					</math>
+				</trigger>
+				<listOfEventAssignments>
+				<eventAssignment variable="lightAmplitude">
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+					
+						<cn>2</cn>
+					</math>
+				
+				</eventAssignment>
+				</listOfEventAssignments>
+			</event>
+			
+		
+		</listOfEvents>
+	
+
+	</model>
+</sbml>

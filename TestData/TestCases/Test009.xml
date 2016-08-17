@@ -1,0 +1,21 @@
+<!-- Simulation and task have same ID - INVALID-->
+<sedML version="1" level="1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
+<listOfModels>
+</listOfModels>
+<listOfSimulations>
+ <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="0" outputEndTime="2500"  numberOfPoints="1000" >
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+</listOfSimulations>
+<listOfTasks>
+  <task id="simulation1" modelReference="model1" simulationReference="simulation1"/>
+   </listOfTasks>
+<listOfDataGenerators>
+  <dataGenerator id="time" name="time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <cn type="real">3.2</cn>
+      </math>
+    </dataGenerator>
+</listOfDataGenerators>
+<listOfOutputs/>
+</sedML>

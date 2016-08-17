@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="3">
+  <model id="lv2">
+    <listOfCompartments>
+      <compartment id="Default" name="Default" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="x" name="x2" compartment="Default" initialConcentration="105">
+        <notes>
+          <html xmlns="http://www.w3.org/1999/xhtml">
+            <body>
+              <p>prey</p>
+            </body>
+          </html>
+        </notes>
+      </species>
+      <species id="y" name="y2" compartment="Default" initialConcentration="8">
+        <notes>
+          <html xmlns="http://www.w3.org/1999/xhtml">
+            <body>
+              <p> predator</p>
+            </body>
+          </html>
+        </notes>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="p" value="0.4" constant="false"/>
+      <parameter id="q" value="0.04" constant="false"/>
+      <parameter id="r" value="0.02" constant="false"/>
+      <parameter id="s" value="2" constant="false"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> p </ci>
+              <ci> x </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> q </ci>
+              <ci> x </ci>
+              <ci> y </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      
+      <rateRule variable="y">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> r </ci>
+              <ci> x </ci>
+              <ci> y </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> s </ci>
+              <ci> y </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfConstraints>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> s </ci>
+              <cn> 10 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> s </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> p </ci>
+              <cn> 1 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> p </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> q </ci>
+              <cn> 0.1 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> q </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+      <constraint>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <and/>
+            <apply>
+              <lt/>
+              <ci> r </ci>
+              <cn> 0.1 </cn>
+            </apply>
+            <apply>
+              <gt/>
+              <ci> r </ci>
+              <cn> 0 </cn>
+            </apply>
+          </apply>
+        </math>
+      </constraint>
+    </listOfConstraints>
+  </model>
+</sbml>

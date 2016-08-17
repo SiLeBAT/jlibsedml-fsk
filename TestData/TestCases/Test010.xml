@@ -1,0 +1,35 @@
+<!-- 2 variables in 2 different data generators  have same ID - INVALID-->
+<sedML version="1" level="1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
+<listOfModels>
+   <model id="model1" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000140"/>
+</listOfModels>
+<listOfSimulations>
+ <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="0" outputEndTime="2500"  numberOfPoints="1000" >
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+</listOfSimulations>
+<listOfTasks>
+  <task id="task1" modelReference="model1" simulationReference="simulation1"/>
+   </listOfTasks>
+<listOfDataGenerators>
+ <dataGenerator id="Total_NFkBn" name="Total_NFkBn">
+      <listOfVariables>
+        <variable id="Total_IkBbeta" taskReference="task1"
+        target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='Total_NFkBn']"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>Total_IkBbeta</ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Total_IkBbeta2" name="Total_IkBbeta">
+      <listOfVariables>
+        <variable id="Total_IkBbeta" taskReference="task1"
+        target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='Total_IkBbeta']" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>Total_IkBbeta</ci>
+      </math>
+    </dataGenerator>
+</listOfDataGenerators>
+<listOfOutputs/>
+</sedML>

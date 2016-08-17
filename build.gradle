@@ -1,0 +1,127 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'java-library-distribution'
+
+group = 'org.jlibsedml'
+version = '2.3.0-SNAPSHOT'
+
+description = """Jlibsedml library"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+ if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+      tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+      }
+    }
+  }
+configurations.all {
+}
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+sourceSets {
+test {
+  java {
+    srcDir 'test'
+  }
+ }
+}
+
+repositories {
+     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.jdom', name: 'jdom', version:'1.1.3'
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.13'
+    compile group: 'jaxen', name: 'jaxen', version:'1.1.1'
+    compile group: 'xom', name: 'xom', version:'1.2.5'
+    compile group: 'org.jdom', name: 'jdom-contrib', version:'1.1.3'
+    compile group: 'org.jmathml', name: 'jmathml', version:'2.2.1'
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-lang:commons-lang:2.6'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.13'
+}
+distributions {
+    main{
+        baseName = 'jlibsedml'
+    }
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+
+// This is 
+if (project.hasProperty('fopHome')){
+    ant.fopHome=fopHome;
+    println "fophome is " + fopHome;
+}
+ant.importBuild('docs/build.xml');
+allDocs.onlyIf { 
+       project.hasProperty('fopHome');
+ }
+
+task copyGeneratedDocs(type: Copy, dependsOn: allDocs) {
+  from('docs/src')
+   include('*.html')
+   include('*.pdf')
+   include('*.png')
+   into('docs/build/docs') 
+}
+task buildDocs2 (dependsOn: copyGeneratedDocs) << {
+     fileTree ('docs/src') {
+        include('*.html')
+        include('*.pdf')
+        include('*.fo')
+        include('*.xml')
+      }.each
+      {File f -> delete(f.getAbsolutePath())}
+}
+
+distributions {
+    main {
+        baseName = 'jlibsedml'
+        contents {
+            from { 'docs/build' }
+            from { 'build/docs' }
+            from { 'build/classes'}
+            from { 'docs/License.txt'}
+            from { 'docs/README.txt'}
+        }
+    }
+}
+
+distZip {
+    dependsOn 'buildDocs2'
+    dependsOn 'javadoc'
+}
+
+
+    
+
+
+

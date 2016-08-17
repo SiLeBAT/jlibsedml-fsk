@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML" version="1" level="1">
+  <listOfSimulations />
+  <listOfModels />
+  <listOfTasks />
+  <listOfDataGenerators />
+  <listOfOutputs>
+    <plot2D id="element1">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <loc>
+            <x>436</x>
+            <y>158</y>
+          </loc>
+          <siz>
+            <width>60</width>
+            <height>30</height>
+          </siz>
+        </sbsi-editor>
+      </annotation>
+    </plot2D>
+    <plot2D id="element2">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <loc>
+            <x>338</x>
+            <y>206</y>
+          </loc>
+          <siz>
+            <width>60</width>
+            <height>30</height>
+          </siz>
+        </sbsi-editor>
+      </annotation>
+    </plot2D>
+    <plot2D id="element3">
+      <annotation>
+        <sbsi-editor xmlns="http://www.sedml.sbsi.editor/level1">
+          <loc>
+            <x>228</x>
+            <y>130</y>
+          </loc>
+          <siz>
+            <width>60</width>
+            <height>30</height>
+          </siz>
+        </sbsi-editor>
+      </annotation>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
+
