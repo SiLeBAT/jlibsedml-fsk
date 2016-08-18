@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jlibsedml</groupId>
 	<artifactId>jlibsedml</artifactId>
-	<version>2.3.0-SNAPSHOT</version>
+	<version>2.3.0</version>
 	<name>Jlibsedml library</name>
 	<url>http://jlibsedml.sf.net/jlibsedml</url>
 	<description>Java library for reading, writing, validating and working with SED-ML files.</description>
@@ -55,15 +55,6 @@
 		</developer>
 
 	</developers>
-<!-- 	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-			</plugin>
-		</plugins>
-	</reporting> -->
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
 		<testSourceDirectory>${basedir}/test</testSourceDirectory>
@@ -93,33 +84,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.9</version>
 			</plugin>
-
-
-		<!-- 	<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<configuration>
-					<mavenExecutorId>forked-path</mavenExecutorId>
-				</configuration>
-			</plugin> -->
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pdf-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>pdf</id>
-						<phase>site</phase>
-						<goals>
-							<goal>pdf</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.reporting.outputDirectory}</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -143,7 +107,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.13</version>
-
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -178,77 +141,9 @@
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-		<site>
-			<id>jlibsedml.sf.net</id>
-			<url>scp://shell.sourceforge.net/home/project-web/jlibsedml/htdocs/jlibsedml</url>
-		</site>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
+		<repository>
+			<id>bintray</id>
+			<url>https://api.bintray.com/maven/silebat/bfr-formats/jlibsedml-fsk/;publish=1</url>
+		</repository>
 	</distributionManagement>
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.2.1</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.9.1</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-                <additionalparam>-Xdoclint:none</additionalparam>
-            </configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.3</version>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>ossrh</serverId>
-							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-
-		</profile>
-	</profiles>
-
 </project>
